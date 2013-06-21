@@ -1,0 +1,4 @@
+MyBatisGeneratorPlugin
+======================
+
+MyBatis Generator plugin
