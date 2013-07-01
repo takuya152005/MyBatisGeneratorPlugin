@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE logback>
+<configuration>
+
+<!-- Appendar設定 -->
+	<include resource="logback-appenders.xml"/>
+
+<!-- Logger設定 -->
+	<!-- java.sql デバック情報本番で出したらダメ -->
+	<logger name="org.apache.ibatis" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_LOG" />
+	</logger>
+	<logger name="java.sql" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_LOG" />
+	</logger>
+
+	<!-- アプリログ -->
+	<logger name="APP_LOG" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_LOG" />
+	</logger>
+
+	<!-- エラーログ -->
+	<logger name="ERROR_LOG" level="ERROR" additivity="false">
+		<appender-ref ref="ERROR_LOG" />
+	</logger>
+
+	<!-- springログ -->
+	<logger name="org.springframework.web.servlet.mvc.annotation" level="INFO" additivity="false">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_LOG" />
+	</logger>
+
+
+<!-- root設定 -->
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR_LOG" />
+	</root>
+</configuration>

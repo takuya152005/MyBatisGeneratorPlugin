@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd"
+	default-autowire="byName">
+
+	<import resource="datasource.xml" />
+
+	<bean id="sqlMasterSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="masterDataSource" />
+		<property name="mapperLocations" value="classpath*:mysql/sql/**/*.xml" />
+		<property name="typeAliasesPackage" value="takuya152005.entities.dto" />
+		<property name="configLocation" value="classpath:mysql/mybatis-config.xml"/>
+	</bean>
+
+	<bean id="sqlSlaveSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="slaveDataSource" />
+		<property name="mapperLocations" value="classpath*:mysql/sql/**/*.xml" />
+		<property name="typeAliasesPackage" value="takuya152005.entities.dto" />
+		<property name="configLocation" value="classpath:mysql/mybatis-config.xml"/>
+	</bean>
+
+	<bean id="sqlSessionProvider" class="jp.ameba.sg2.bt.core.entities.SqlSessionProvider">
+		<property name="sqlMasterSessionFactory" ref="sqlMasterSessionFactory" />
+		<property name="sqlSlaveSessionFactory" ref="sqlSlaveSessionFactory" />
+	</bean>
+
+	<!-- アノテーションベースのトランザクション管理を有効にする -->
+	<tx:annotation-driven transaction-manager="txManager" />
+
+	<!-- transactionManager -->
+	<tx:annotation-driven />
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="masterDataSource"/>
+	</bean>
+
+</beans>

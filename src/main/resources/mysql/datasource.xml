@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<!-- マスター設定 -->
+	<bean id="masterDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/testDb?useUnicode=true&amp;characterEncoding=UTF-8&amp;socketTimeout=3000&amp;connectTimeout=3000" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+		<property name="initialSize" value="2" />
+		<property name="maxActive" value="2" />
+		<property name="maxIdle" value="2" />
+		<property name="minIdle" value="2" />
+		<property name="maxWait" value="120000" />
+		<property name="validationQuery" value="select 1" />
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxOpenPreparedStatements" value="0" />
+	</bean>
+
+	<!-- スレーブ設定 -->
+	<bean id="slaveDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/testDb?useUnicode=true&amp;characterEncoding=UTF-8&amp;socketTimeout=3000&amp;connectTimeout=3000" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
+		<property name="initialSize" value="2" />
+		<property name="maxActive" value="2" />
+		<property name="maxIdle" value="2" />
+		<property name="minIdle" value="2" />
+		<property name="maxWait" value="120000" />
+		<property name="validationQuery" value="select 1" />
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxOpenPreparedStatements" value="0" />
+	</bean>
+
+</beans>
