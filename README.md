@@ -30,3 +30,9 @@ MyBatis Generator plugin
   http://mybatis.googlecode.com/svn/sub-projects/generator/trunk/eclipse/UpdateSite/
 
 
+アーキテクチャ
+------
+
+・水平分割の方法
+SQL文の作成時にテーブル名を「tableName_${tableNameSuffix}」として対応。  
+dtoクラス作成時に必ず「base dto」「example」「key」クラスを作成するように設定を行なっている。keyクラスにtableNameSuffixのカスタマイズを入れているので分散対象のテーブルの場合は指定をして下さい。

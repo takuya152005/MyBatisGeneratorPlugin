@@ -20,11 +20,11 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
  * 変更点
  * ・sql mapのテーブル名にsuffix追加
  *  ex:i_user -> &lttrim&gti_user&ltif test="tableNameSuffix != null" &gt_${tableNameSuffix}&lt/if&gt&lt/trim&gt
- * ・dtoにtableNameSuffix変数追加
+ * ・dtoのkeyクラスにtableNameSuffix変数追加
  * ・generatorCongig.xmlにsuffix付きのテーブルを指定した場合、suffixを外して処理を行うように変更
  *
  * 使い方
- * 分散対象のテーブルの場合、dtoのtableNameSuffixに値を入れる。tableName_${tableNameSuffix}
+ * 分散対象のテーブルの場合、dtoのkeyクラスのtableNameSuffixに値を入れると、SQL分のfromを「tableName_${tableNameSuffix}」に変更する
  *
  * generator方法
  * ・generatorCongig.xmlのテーブルは、分散しているテーブルの1つを指定してください。
@@ -110,7 +110,7 @@ public class SharingPlugin extends PluginAdapter {
 
 
 	@Override
-	public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+	public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 		makeTableNameSuffix(topLevelClass, introspectedTable);
 		return true;
 	}

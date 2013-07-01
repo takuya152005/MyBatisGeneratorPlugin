@@ -5,7 +5,9 @@
 <generatorConfiguration>
 <!-- JDBCを指定 -->
 <classPathEntry location="C:\Users\hogehoge\.m2\repository\mysql\mysql-connector-java\5.1.25\mysql-connector-java-5.1.25.jar"/>
-<context id="MySQL" targetRuntime="MyBatis3">
+<context id="MySQL" targetRuntime="MyBatis3" defaultModelType="hierarchical">
+<property name="javaFileEncoding" value="UTF-8" />
+
 
 	<plugin type="plugin.MapperClassNamePlugin" />
 	<plugin type="plugin.MapperXmlNamePlugin" />
@@ -31,7 +33,7 @@
 		password="">
 	</jdbcConnection>
 	<javaTypeResolver>
-		<property name="forceBigDecimals" value="false" />
+		<property name="forceBigDecimals" value="true" />
 	</javaTypeResolver>
 
 	<javaModelGenerator
