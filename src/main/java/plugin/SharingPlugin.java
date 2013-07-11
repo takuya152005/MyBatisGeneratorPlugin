@@ -24,10 +24,10 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
  * ・generatorCongig.xmlにsuffix付きのテーブルを指定した場合、suffixを外して処理を行うように変更
  *
  * 使い方
- * 分散対象のテーブルの場合、dtoのkeyクラスのtableNameSuffixに値を入れると、SQL分のfromを「tableName_${tableNameSuffix}」に変更する
+ * 分散対象のテーブルの場合、dtoのkeyクラス、ExampleクラスのtableNameSuffixに値を入れると、SQL文を生成時にテーブル名を「tableName_${tableNameSuffix}」に変更する
  *
  * generator方法
- * ・generatorCongig.xmlのテーブルは、分散しているテーブルの1つを指定してください。
+ * ・generatorCongig.xmlのテーブルは、分散しているテーブルの1つを指定してください。（複数指定は、上書きするため問題ありません）
  *  ex:&lttable tableName="i_user_bookmark_0"/&gt
  *
  * </pre>
@@ -111,6 +111,13 @@ public class SharingPlugin extends PluginAdapter {
 
 	@Override
 	public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+		makeTableNameSuffix(topLevelClass, introspectedTable);
+		return true;
+	}
+
+	@Override
+	public boolean modelExampleClassGenerated(TopLevelClass topLevelClass,
+			IntrospectedTable introspectedTable) {
 		makeTableNameSuffix(topLevelClass, introspectedTable);
 		return true;
 	}
