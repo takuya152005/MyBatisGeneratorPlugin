@@ -1,4 +1,4 @@
-package plugin;
+package mybatis.generator.plugins;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.mybatis.generator.api.PluginAdapter;
 
 /**
  * MyBatis Generatorが生成するマッパーXMLファイル名の末尾のMapperを削除するプラグイン。
+ *
+ * @author iwamoto takuya
  */
 public class MapperXmlNamePlugin extends PluginAdapter {
 

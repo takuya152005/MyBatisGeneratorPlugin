@@ -1,4 +1,4 @@
-package plugin;
+package mybatis.generator.plugins;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.mybatis.generator.api.PluginAdapter;
 
 /**
  * MyBatis Generatorが生成するマッパークラス名の末尾を、MapperからDaoに変更するプラグイン。
+ *
+ * @author iwamoto takuya
  */
 public class MapperClassNamePlugin extends PluginAdapter {
 

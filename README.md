@@ -15,15 +15,17 @@ MyBatis Generator plugin
 * SharingPlugin  
   ->テーブルの水平分散を支援するプラグイン。
 
+* MySQLのTinyintのカラムのマッピングをByte→Integerに変更
 
 使い方
 ------
 
-・generatorConfig.xmlにプラグインの設定を追加
+・generatorConfig.xmlにプラグインの設定を追加。javaTypeResolverにtype指定
 
     <plugin type="plugin.MapperClassNamePlugin" />
     <plugin type="plugin.MapperXmlNamePlugin" />
     <plugin type="plugin.SharingPlugin" />
+    <javaTypeResolver type="mybatis.generator.customs.JavaTypeResolverCustomImpl">
 
 
 ・eclipseの「MyBatis Generator Eclipse plugin」から実行  

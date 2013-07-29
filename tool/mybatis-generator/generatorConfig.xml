@@ -9,9 +9,9 @@
 <property name="javaFileEncoding" value="UTF-8" />
 
 
-	<plugin type="plugin.MapperClassNamePlugin" />
-	<plugin type="plugin.MapperXmlNamePlugin" />
-	<plugin type="plugin.SharingPlugin" />
+	<plugin type="mybatis.generator.plugins.MapperClassNamePlugin" />
+	<plugin type="mybatis.generator.plugins.MapperXmlNamePlugin" />
+	<plugin type="mybatis.generator.plugins.SharingPlugin" />
 
 	<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
 	<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
@@ -32,8 +32,9 @@
 		userId="root"
 		password="">
 	</jdbcConnection>
-	<javaTypeResolver>
-		<property name="forceBigDecimals" value="true" />
+
+	<javaTypeResolver type="mybatis.generator.customs.JavaTypeResolverCustomImpl">
+		<property name="forceBigDecimals" value="false" />
 	</javaTypeResolver>
 
 	<javaModelGenerator

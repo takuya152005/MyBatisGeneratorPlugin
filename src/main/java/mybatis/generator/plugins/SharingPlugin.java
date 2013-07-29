@@ -1,4 +1,4 @@
-package plugin;
+package mybatis.generator.plugins;
 
 import java.util.List;
 
@@ -31,6 +31,8 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
  *  ex:&lttable tableName="i_user_bookmark_0"/&gt
  *
  * </pre>
+ *
+ * @author iwamoto takuya
  */
 public class SharingPlugin extends PluginAdapter {
 
